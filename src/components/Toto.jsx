@@ -1,27 +1,17 @@
-import Maman from "./Maman";
-
-const Toto = ({name, leState, responseToto}) => { // {props.name, props.leState, props.responseToto}
-
-  console.log(leState);
-
-  if (leState.messageMaman !== null) {
-    <button>Réponse de Toto</button>
-  }
-  <button disabled>Réponse de Toto</button>
-
-
-  const btnResponseToto = (leState.messageMaman !== null) ?
-    (<button onClick={responseToto}>Réponse de Toto</button>) :
-    (<button disabled>Réponse de Toto</button>)
-
-
+const Toto = ({name, leState, reponseTotoProps})=> {
+  // console.log(name, leState)
   return (
     <div>
-     <h2>{name}</h2>
-    {btnResponseToto}
-    <p>{leState.messageToto}</p>
+        <h2>{name}</h2>
+        <button
+            // Compléter cette section
+            disabled={leState.disabled}
+            onClick={() => reponseTotoProps("Non je n'ai pas envie, je veux regarder la télé")}
+        >Réponse</button>
+
+        <p>{leState.messageToto}</p>
     </div>
   )
 }
 
-export default Toto;
+export default Toto

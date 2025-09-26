@@ -1,37 +1,47 @@
-import { Component } from "react";
-import Toto from "./Toto";
-
+import { Component } from 'react';
+import Toto from './Toto';
 
 class Maman extends Component {
+    state = {
+        messageMaman: null,
+        messageToto: null,
+        disabled: true
+    }
 
-  state = {
-    messageMaman: null,
-    messageToto: null
-  }
+    // Compléter le code de la méthode ordreMaman.
+    ordreMaman = (message) => {
+      this.setState({
+        messageMaman: message,
+        disabled: false
+      })
+    }
 
-  ordreMaman = () => {
-    this.setState({
-      messageMaman: "Va ranger ta chambre !"
-    })
-  }
+    reponseToto = (message) => {
+      this.setState({
+        messageToto: message
+      });
+    }
 
-  reponseToto = () => {
-    this.setState({
-      messageToto: "Oui j'y vais"
-    })
-  }
+    render() {
+        return (
+            <div>
+                <h1>Maman</h1>
+                <button
+                    onClick={() => this.ordreMaman("Va ranger ta chambre")}
+                >Order de la mère</button>
 
-  render () {
-    return(
-      <div>
-        <h1>Maman</h1>
-        <button onClick={this.ordreMaman}>ordre de la mère</button>
-        <p>{this.state.messageMaman}</p>
-        <hr />
-        <Toto name="Toto" leState={this.state} responseToto={this.reponseToto}/>
-      </div>
-    );
-  }
+                <p>{this.state.messageMaman}</p>
+
+                <hr />
+
+                <Toto
+                    name="Toto"
+                    reponseTotoProps={this.reponseToto}
+                    leState={this.state}
+                />
+            </div>
+        )
+    }
 }
 
 export default Maman;
